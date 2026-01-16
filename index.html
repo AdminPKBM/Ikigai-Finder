@@ -7,112 +7,177 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
-        .venn-circle { transition: all 0.5s ease; mix-blend-mode: multiply; opacity: 0.6; }
-        .venn-container { position: relative; width: 300px; height: 300px; margin: auto; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at top right, #e0e7ff, #f8fafc);
+            min-height: 100vh;
+        }
+        .venn-circle { transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); mix-blend-mode: multiply; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 2px solid currentColor;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.5s ease forwards; }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="flex items-center justify-center p-4 md:p-8">
 
-    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
-        <div class="md:flex">
-            <div class="md:w-1/3 bg-indigo-600 p-8 text-white">
-                <h1 class="text-3xl font-extrabold mb-4">Ikigai Finder</h1>
-                <p class="text-indigo-100 mb-6 text-sm">Temukan irisan antara apa yang kamu cintai, apa yang kamu kuasai, dan apa yang dunia butuhkan.</p>
-                <div class="text-xs border-t border-indigo-400 pt-4">
-                    By <a href="https://kangruli.web.id" class="underline font-bold">kangruli.web.id</a>
+    <div class="max-w-5xl w-full bg-white/40 glass rounded-[2.5rem] shadow-2xl overflow-hidden border border-white">
+        <div class="flex flex-col md:flex-row">
+            
+            <div class="md:w-1/3 bg-indigo-600 p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
+                        ✨
+                    </div>
+                    <h1 class="text-4xl font-extrabold mb-4 tracking-tight">Ikigai Finder</h1>
+                    <p class="text-indigo-100 mb-6 leading-relaxed opacity-90">
+                        Cari tahu apakah karier dan hidupmu sudah seimbang melalui filosofi Jepang.
+                    </p>
                 </div>
+                
+                <div class="relative z-10 pt-10">
+                    <div class="text-xs uppercase tracking-widest text-indigo-300 font-bold mb-2">Developed By</div>
+                    <a href="https://kangruli.web.id" class="text-lg font-bold hover:text-indigo-200 transition">kangruli.web.id</a>
+                </div>
+
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500 rounded-full blur-3xl opacity-50"></div>
             </div>
 
-            <div class="md:w-2/3 p-8">
-                <div id="quiz-section">
-                    <h2 class="text-xl font-bold mb-6 text-gray-800">Cek Keseimbangan Hidupmu</h2>
+            <div class="md:w-2/3 p-6 md:p-12">
+                <div id="quiz-section" class="animate-fade">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-extrabold text-gray-800">Seberapa Ideal Hidupmu?</h2>
+                        <p class="text-gray-500">Geser slider di bawah sesuai dengan keadaanmu saat ini.</p>
+                    </div>
                     
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-2">1. Apa kamu mencintai apa yang kamu lakukan? (Passion)</label>
-                            <input type="range" id="p1" class="w-full h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer accent-pink-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-2">2. Apakah dunia membutuhkan hal ini? (Mission)</label>
-                            <input type="range" id="p2" class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-2">3. Apakah kamu dibayar untuk ini? (Vocation)</label>
-                            <input type="range" id="p3" class="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-2">4. Apakah kamu ahli di bidang ini? (Profession)</label>
-                            <input type="range" id="p4" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                    <div class="grid gap-8">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-bold text-gray-700">❤️ PASSION (Hal yang kamu sukai)</label>
+                                <span id="v-p1" class="text-pink-600 font-bold bg-pink-50 px-3 py-1 rounded-full text-xs">50%</span>
+                            </div>
+                            <input type="range" id="p1" value="50" oninput="updateVal('p1')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-pink-500">
                         </div>
 
-                        <button onclick="calculateIkigai()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition">
-                            Analisis Ikigai Saya
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-bold text-gray-700">🌍 MISSION (Kebutuhan dunia)</label>
+                                <span id="v-p2" class="text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full text-xs">50%</span>
+                            </div>
+                            <input type="range" id="p2" value="50" oninput="updateVal('p2')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-emerald-500">
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-bold text-gray-700">💰 VOCATION (Penghasilan/Gaji)</label>
+                                <span id="v-p3" class="text-amber-600 font-bold bg-amber-50 px-3 py-1 rounded-full text-xs">50%</span>
+                            </div>
+                            <input type="range" id="p3" value="50" oninput="updateVal('p3')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-amber-500">
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-bold text-gray-700">🏆 PROFESSION (Keahlianmu)</label>
+                                <span id="v-p4" class="text-blue-600 font-bold bg-blue-50 px-3 py-1 rounded-full text-xs">50%</span>
+                            </div>
+                            <input type="range" id="p4" value="50" oninput="updateVal('p4')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-blue-500">
+                        </div>
+
+                        <button onclick="calculateIkigai()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-200 transition-all active:scale-95">
+                            Lihat Hasil Analisis 🚀
                         </button>
                     </div>
                 </div>
 
-                <div id="result-section" class="hidden text-center">
-                    <div class="venn-container mb-10">
-                        <div id="v1" class="venn-circle absolute rounded-full bg-pink-500" style="width: 150px; height: 150px; top: 20px; left: 75px;"></div>
-                        <div id="v2" class="venn-circle absolute rounded-full bg-emerald-500" style="width: 150px; height: 150px; top: 80px; left: 130px;"></div>
-                        <div id="v3" class="venn-circle absolute rounded-full bg-amber-500" style="width: 150px; height: 150px; top: 130px; left: 75px;"></div>
-                        <div id="v4" class="venn-circle absolute rounded-full bg-blue-500" style="width: 150px; height: 150px; top: 80px; left: 20px;"></div>
+                <div id="result-section" class="hidden animate-fade text-center">
+                    <div class="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] mx-auto mb-8">
+                        <div id="v1" class="venn-circle absolute rounded-full bg-pink-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 10%; left: 25%;"></div>
+                        <div id="v2" class="venn-circle absolute rounded-full bg-emerald-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 30%; left: 45%;"></div>
+                        <div id="v3" class="venn-circle absolute rounded-full bg-amber-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 45%; left: 25%;"></div>
+                        <div id="v4" class="venn-circle absolute rounded-full bg-blue-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 30%; left: 5%;"></div>
                         
-                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span class="text-[10px] font-bold text-gray-800 bg-white/80 px-2 rounded-full">IKIGAI</span>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white px-4 py-2 rounded-2xl shadow-xl border border-gray-100 font-black text-indigo-600 tracking-tighter">IKIGAI</div>
                         </div>
                     </div>
 
-                    <h3 id="result-title" class="text-2xl font-bold text-gray-800 mb-2"></h3>
-                    <p id="result-desc" class="text-gray-600 mb-6 px-4"></p>
-                    
-                    <button onclick="location.reload()" class="text-indigo-600 font-semibold border border-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50">
-                        Coba Lagi
-                    </button>
+                    <div class="px-4">
+                        <h3 id="result-title" class="text-3xl font-black text-gray-800 mb-3 uppercase italic tracking-tight"></h3>
+                        <p id="result-desc" class="text-gray-600 mb-8 leading-relaxed italic"></p>
+                        
+                        <div class="flex flex-col md:flex-row gap-4 justify-center">
+                            <button onclick="shareResult()" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                                📱 Share ke WA
+                            </button>
+                            <button onclick="location.reload()" class="flex-1 text-gray-500 font-semibold border border-gray-200 py-3 px-6 rounded-xl hover:bg-gray-50">
+                                Ulangi Tes
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        function updateVal(id) {
+            const val = document.getElementById(id).value;
+            document.getElementById('v-' + id).innerText = val + '%';
+        }
+
         function calculateIkigai() {
-            const p1 = document.getElementById('p1').value; // Love
-            const p2 = document.getElementById('p2').value; // Need
-            const p3 = document.getElementById('p3').value; // Paid
-            const p4 = document.getElementById('p4').value; // Skill
+            const p1 = parseInt(document.getElementById('p1').value);
+            const p2 = parseInt(document.getElementById('p2').value);
+            const p3 = parseInt(document.getElementById('p3').value);
+            const p4 = parseInt(document.getElementById('p4').value);
 
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('result-section').classList.remove('hidden');
 
-            // Update Circle Sizes based on input
-            document.getElementById('v1').style.transform = `scale(${0.5 + p1/100})`;
-            document.getElementById('v2').style.transform = `scale(${0.5 + p2/100})`;
-            document.getElementById('v3').style.transform = `scale(${0.5 + p3/100})`;
-            document.getElementById('v4').style.transform = `scale(${0.5 + p4/100})`;
+            // Visual Scaling logic
+            document.getElementById('v1').style.transform = `scale(${0.4 + p1/100})`;
+            document.getElementById('v2').style.transform = `scale(${0.4 + p2/100})`;
+            document.getElementById('v3').style.transform = `scale(${0.4 + p3/100})`;
+            document.getElementById('v4').style.transform = `scale(${0.4 + p4/100})`;
 
-            // Logic Penentuan
             let title = "";
             let desc = "";
+            const avg = (p1 + p2 + p3 + p4) / 4;
 
-            const avg = (parseInt(p1) + parseInt(p2) + parseInt(p3) + parseInt(p4)) / 4;
-
-            if (avg > 80) {
-                title = "The True Master";
-                desc = "Luar biasa! Kamu berada di titik Ikigai yang sempurna. Hidupmu bermakna dan sejahtera.";
+            if (avg > 85) {
+                title = "The Ikigai Master";
+                desc = "Kamu berada di level langka! Hidupmu sangat bermakna, berdampak, dan sejahtera secara finansial.";
             } else if (p1 > 70 && p4 > 70 && p3 < 50) {
-                title = "The Starving Artist";
-                desc = "Kamu sangat mencintai dan ahli di bidangmu, tapi kamu perlu belajar cara memonetisasinya agar lebih berkelanjutan.";
-            } else if (p3 > 70 && p4 > 70 && p1 < 50) {
-                title = "The Corporate Hero";
-                desc = "Kamu dibayar mahal dan ahli, tapi hatimu terasa kosong. Cobalah cari sisi yang kamu cintai dari pekerjaanmu.";
+                title = "The Passionate Starver";
+                desc = "Kamu sangat cinta dan ahli, tapi kantongmu masih sering kering. Waktunya belajar monetisasi!";
+            } else if (p3 > 75 && p4 > 75 && p1 < 50) {
+                title = "The Wealthy Machine";
+                desc = "Duit lancar, skill dewa, tapi jiwamu hampa. Jangan lupa cari hobi yang bikin kamu 'hidup'.";
+            } else if (p1 > 75 && p2 > 75 && p3 < 40) {
+                title = "The Social Dreamer";
+                desc = "Niatmu mulia membantu dunia, tapi kamu butuh strategi finansial agar misimu tidak berhenti di tengah jalan.";
             } else {
-                title = "The Explorer";
-                desc = "Kamu masih dalam tahap mencari keseimbangan. Teruslah bereksperimen dengan hal baru!";
+                title = "The Brave Explorer";
+                desc = "Kamu sedang berproses! Teruslah bereksperimen sampai menemukan irisan ternyamanmu.";
             }
 
             document.getElementById('result-title').innerText = title;
             document.getElementById('result-desc').innerText = desc;
+        }
+
+        function shareResult() {
+            const title = document.getElementById('result-title').innerText;
+            const text = `Cek Ikigai-mu di ikigai.kangruli.web.id! Hasilku: ${title}. Seru banget, cobain deh! ✨`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
 </body>
