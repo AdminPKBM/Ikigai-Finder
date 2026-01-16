@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikigai Finder | kangruli.web.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .venn-circle { transition: all 0.5s ease; mix-blend-mode: multiply; opacity: 0.6; }
+        .venn-container { position: relative; width: 300px; height: 300px; margin: auto; }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div class="md:flex">
+            <div class="md:w-1/3 bg-indigo-600 p-8 text-white">
+                <h1 class="text-3xl font-extrabold mb-4">Ikigai Finder</h1>
+                <p class="text-indigo-100 mb-6 text-sm">Temukan irisan antara apa yang kamu cintai, apa yang kamu kuasai, dan apa yang dunia butuhkan.</p>
+                <div class="text-xs border-t border-indigo-400 pt-4">
+                    By <a href="https://kangruli.web.id" class="underline font-bold">kangruli.web.id</a>
+                </div>
+            </div>
+
+            <div class="md:w-2/3 p-8">
+                <div id="quiz-section">
+                    <h2 class="text-xl font-bold mb-6 text-gray-800">Cek Keseimbangan Hidupmu</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-2">1. Apa kamu mencintai apa yang kamu lakukan? (Passion)</label>
+                            <input type="range" id="p1" class="w-full h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer accent-pink-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-2">2. Apakah dunia membutuhkan hal ini? (Mission)</label>
+                            <input type="range" id="p2" class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-2">3. Apakah kamu dibayar untuk ini? (Vocation)</label>
+                            <input type="range" id="p3" class="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-2">4. Apakah kamu ahli di bidang ini? (Profession)</label>
+                            <input type="range" id="p4" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                        </div>
+
+                        <button onclick="calculateIkigai()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition">
+                            Analisis Ikigai Saya
+                        </button>
+                    </div>
+                </div>
+
+                <div id="result-section" class="hidden text-center">
+                    <div class="venn-container mb-10">
+                        <div id="v1" class="venn-circle absolute rounded-full bg-pink-500" style="width: 150px; height: 150px; top: 20px; left: 75px;"></div>
+                        <div id="v2" class="venn-circle absolute rounded-full bg-emerald-500" style="width: 150px; height: 150px; top: 80px; left: 130px;"></div>
+                        <div id="v3" class="venn-circle absolute rounded-full bg-amber-500" style="width: 150px; height: 150px; top: 130px; left: 75px;"></div>
+                        <div id="v4" class="venn-circle absolute rounded-full bg-blue-500" style="width: 150px; height: 150px; top: 80px; left: 20px;"></div>
+                        
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <span class="text-[10px] font-bold text-gray-800 bg-white/80 px-2 rounded-full">IKIGAI</span>
+                        </div>
+                    </div>
+
+                    <h3 id="result-title" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+                    <p id="result-desc" class="text-gray-600 mb-6 px-4"></p>
+                    
+                    <button onclick="location.reload()" class="text-indigo-600 font-semibold border border-indigo-600 px-6 py-2 rounded-lg hover:bg-indigo-50">
+                        Coba Lagi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateIkigai() {
+            const p1 = document.getElementById('p1').value; // Love
+            const p2 = document.getElementById('p2').value; // Need
+            const p3 = document.getElementById('p3').value; // Paid
+            const p4 = document.getElementById('p4').value; // Skill
+
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+
+            // Update Circle Sizes based on input
+            document.getElementById('v1').style.transform = `scale(${0.5 + p1/100})`;
+            document.getElementById('v2').style.transform = `scale(${0.5 + p2/100})`;
+            document.getElementById('v3').style.transform = `scale(${0.5 + p3/100})`;
+            document.getElementById('v4').style.transform = `scale(${0.5 + p4/100})`;
+
+            // Logic Penentuan
+            let title = "";
+            let desc = "";
+
+            const avg = (parseInt(p1) + parseInt(p2) + parseInt(p3) + parseInt(p4)) / 4;
+
+            if (avg > 80) {
+                title = "The True Master";
+                desc = "Luar biasa! Kamu berada di titik Ikigai yang sempurna. Hidupmu bermakna dan sejahtera.";
+            } else if (p1 > 70 && p4 > 70 && p3 < 50) {
+                title = "The Starving Artist";
+                desc = "Kamu sangat mencintai dan ahli di bidangmu, tapi kamu perlu belajar cara memonetisasinya agar lebih berkelanjutan.";
+            } else if (p3 > 70 && p4 > 70 && p1 < 50) {
+                title = "The Corporate Hero";
+                desc = "Kamu dibayar mahal dan ahli, tapi hatimu terasa kosong. Cobalah cari sisi yang kamu cintai dari pekerjaanmu.";
+            } else {
+                title = "The Explorer";
+                desc = "Kamu masih dalam tahap mencari keseimbangan. Teruslah bereksperimen dengan hal baru!";
+            }
+
+            document.getElementById('result-title').innerText = title;
+            document.getElementById('result-desc').innerText = desc;
+        }
+    </script>
+</body>
+</html>
