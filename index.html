@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4454451699877502"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ikigai Finder | kangruli.web.id</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4454451699877502" crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -28,43 +29,56 @@
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.5s ease forwards; }
+        
+        /* Container Iklan Responsif */
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            margin: 20px auto;
+            overflow: hidden;
+            text-align: center;
+        }
     </style>
 </head>
-<body class="flex items-center justify-center p-4 md:p-8">
+<body class="flex flex-col items-center justify-center p-4 md:p-8">
+
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4454451699877502"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <div class="max-w-5xl w-full bg-white/40 glass rounded-[2.5rem] shadow-2xl overflow-hidden border border-white">
         <div class="flex flex-col md:flex-row">
             
             <div class="md:w-1/3 bg-indigo-600 p-10 text-white flex flex-col justify-between relative overflow-hidden">
                 <div class="relative z-10">
-                    <div class="bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
-                        ✨
-                    </div>
+                    <div class="bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">✨</div>
                     <h1 class="text-4xl font-extrabold mb-4 tracking-tight">Ikigai Finder</h1>
-                    <p class="text-indigo-100 mb-6 leading-relaxed opacity-90">
-                        Cari tahu apakah karier dan hidupmu sudah seimbang melalui filosofi Jepang.
-                    </p>
+                    <p class="text-indigo-100 mb-6 leading-relaxed opacity-90">Cari tahu keseimbangan hidupmu melalui filosofi Jepang.</p>
                 </div>
-                
                 <div class="relative z-10 pt-10">
                     <div class="text-xs uppercase tracking-widest text-indigo-300 font-bold mb-2">Developed By</div>
                     <a href="https://kangruli.web.id" class="text-lg font-bold hover:text-indigo-200 transition">kangruli.web.id</a>
                 </div>
-
                 <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500 rounded-full blur-3xl opacity-50"></div>
             </div>
 
             <div class="md:w-2/3 p-6 md:p-12">
                 <div id="quiz-section" class="animate-fade">
-                    <div class="mb-8">
+                    <div class="mb-8 text-center md:text-left">
                         <h2 class="text-2xl font-extrabold text-gray-800">Seberapa Ideal Hidupmu?</h2>
-                        <p class="text-gray-500">Geser slider di bawah sesuai dengan keadaanmu saat ini.</p>
+                        <p class="text-gray-500">Geser slider sesuai keadaanmu saat ini.</p>
                     </div>
                     
                     <div class="grid gap-8">
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <label class="text-sm font-bold text-gray-700">❤️ PASSION (Hal yang kamu sukai)</label>
+                                <label class="text-sm font-bold text-gray-700 uppercase">❤️ Love (Passion)</label>
                                 <span id="v-p1" class="text-pink-600 font-bold bg-pink-50 px-3 py-1 rounded-full text-xs">50%</span>
                             </div>
                             <input type="range" id="p1" value="50" oninput="updateVal('p1')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-pink-500">
@@ -72,7 +86,7 @@
 
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <label class="text-sm font-bold text-gray-700">🌍 MISSION (Kebutuhan dunia)</label>
+                                <label class="text-sm font-bold text-gray-700 uppercase">🌍 Need (Mission)</label>
                                 <span id="v-p2" class="text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full text-xs">50%</span>
                             </div>
                             <input type="range" id="p2" value="50" oninput="updateVal('p2')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-emerald-500">
@@ -80,7 +94,7 @@
 
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <label class="text-sm font-bold text-gray-700">💰 VOCATION (Penghasilan/Gaji)</label>
+                                <label class="text-sm font-bold text-gray-700 uppercase">💰 Paid (Vocation)</label>
                                 <span id="v-p3" class="text-amber-600 font-bold bg-amber-50 px-3 py-1 rounded-full text-xs">50%</span>
                             </div>
                             <input type="range" id="p3" value="50" oninput="updateVal('p3')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-amber-500">
@@ -88,97 +102,76 @@
 
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <label class="text-sm font-bold text-gray-700">🏆 PROFESSION (Keahlianmu)</label>
+                                <label class="text-sm font-bold text-gray-700 uppercase">🏆 Skill (Profession)</label>
                                 <span id="v-p4" class="text-blue-600 font-bold bg-blue-50 px-3 py-1 rounded-full text-xs">50%</span>
                             </div>
                             <input type="range" id="p4" value="50" oninput="updateVal('p4')" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-blue-500">
                         </div>
 
-                        <button onclick="calculateIkigai()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-200 transition-all active:scale-95">
-                            Lihat Hasil Analisis 🚀
-                        </button>
+                        <button onclick="calculateIkigai()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95">Analisis Ikigai Saya 🚀</button>
                     </div>
                 </div>
 
                 <div id="result-section" class="hidden animate-fade text-center">
                     <div class="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] mx-auto mb-8">
-                        <div id="v1" class="venn-circle absolute rounded-full bg-pink-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 10%; left: 25%;"></div>
-                        <div id="v2" class="venn-circle absolute rounded-full bg-emerald-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 30%; left: 45%;"></div>
-                        <div id="v3" class="venn-circle absolute rounded-full bg-amber-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 45%; left: 25%;"></div>
-                        <div id="v4" class="venn-circle absolute rounded-full bg-blue-400/60 blur-[1px]" style="width: 160px; height: 160px; top: 30%; left: 5%;"></div>
-                        
+                        <div id="v1" class="venn-circle absolute rounded-full bg-pink-400/60" style="width: 160px; height: 160px; top: 10%; left: 25%;"></div>
+                        <div id="v2" class="venn-circle absolute rounded-full bg-emerald-400/60" style="width: 160px; height: 160px; top: 30%; left: 45%;"></div>
+                        <div id="v3" class="venn-circle absolute rounded-full bg-amber-400/60" style="width: 160px; height: 160px; top: 45%; left: 25%;"></div>
+                        <div id="v4" class="venn-circle absolute rounded-full bg-blue-400/60" style="width: 160px; height: 160px; top: 30%; left: 5%;"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="bg-white px-4 py-2 rounded-2xl shadow-xl border border-gray-100 font-black text-indigo-600 tracking-tighter">IKIGAI</div>
+                            <div class="bg-white px-4 py-2 rounded-2xl shadow-xl font-black text-indigo-600">IKIGAI</div>
                         </div>
                     </div>
 
-                    <div class="px-4">
-                        <h3 id="result-title" class="text-3xl font-black text-gray-800 mb-3 uppercase italic tracking-tight"></h3>
-                        <p id="result-desc" class="text-gray-600 mb-8 leading-relaxed italic"></p>
-                        
-                        <div class="flex flex-col md:flex-row gap-4 justify-center">
-                            <button onclick="shareResult()" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center gap-2">
-                                📱 Share ke WA
-                            </button>
-                            <button onclick="location.reload()" class="flex-1 text-gray-500 font-semibold border border-gray-200 py-3 px-6 rounded-xl hover:bg-gray-50">
-                                Ulangi Tes
-                            </button>
-                        </div>
+                    <h3 id="result-title" class="text-3xl font-black text-gray-800 mb-3 italic tracking-tight"></h3>
+                    <p id="result-desc" class="text-gray-600 mb-8 leading-relaxed italic"></p>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <button onclick="shareResult()" class="flex-1 bg-green-500 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center gap-2">📱 Share WA</button>
+                        <button onclick="location.reload()" class="flex-1 text-gray-500 font-semibold border border-gray-200 py-3 px-6 rounded-xl hover:bg-gray-50">Ulangi</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4454451699877502"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <script>
         function updateVal(id) {
-            const val = document.getElementById(id).value;
-            document.getElementById('v-' + id).innerText = val + '%';
+            document.getElementById('v-' + id).innerText = document.getElementById(id).value + '%';
         }
 
         function calculateIkigai() {
-            const p1 = parseInt(document.getElementById('p1').value);
-            const p2 = parseInt(document.getElementById('p2').value);
-            const p3 = parseInt(document.getElementById('p3').value);
-            const p4 = parseInt(document.getElementById('p4').value);
-
+            const p = [parseInt(document.getElementById('p1').value), parseInt(document.getElementById('p2').value), parseInt(document.getElementById('p3').value), parseInt(document.getElementById('p4').value)];
             document.getElementById('quiz-section').classList.add('hidden');
             document.getElementById('result-section').classList.remove('hidden');
 
-            // Visual Scaling logic
-            document.getElementById('v1').style.transform = `scale(${0.4 + p1/100})`;
-            document.getElementById('v2').style.transform = `scale(${0.4 + p2/100})`;
-            document.getElementById('v3').style.transform = `scale(${0.4 + p3/100})`;
-            document.getElementById('v4').style.transform = `scale(${0.4 + p4/100})`;
+            ['v1','v2','v3','v4'].forEach((v, i) => document.getElementById(v).style.transform = `scale(${0.4 + p[i]/100})`);
 
-            let title = "";
-            let desc = "";
-            const avg = (p1 + p2 + p3 + p4) / 4;
+            let title = "", desc = "";
+            const avg = p.reduce((a,b) => a+b)/4;
 
-            if (avg > 85) {
-                title = "The Ikigai Master";
-                desc = "Kamu berada di level langka! Hidupmu sangat bermakna, berdampak, dan sejahtera secara finansial.";
-            } else if (p1 > 70 && p4 > 70 && p3 < 50) {
-                title = "The Passionate Starver";
-                desc = "Kamu sangat cinta dan ahli, tapi kantongmu masih sering kering. Waktunya belajar monetisasi!";
-            } else if (p3 > 75 && p4 > 75 && p1 < 50) {
-                title = "The Wealthy Machine";
-                desc = "Duit lancar, skill dewa, tapi jiwamu hampa. Jangan lupa cari hobi yang bikin kamu 'hidup'.";
-            } else if (p1 > 75 && p2 > 75 && p3 < 40) {
-                title = "The Social Dreamer";
-                desc = "Niatmu mulia membantu dunia, tapi kamu butuh strategi finansial agar misimu tidak berhenti di tengah jalan.";
-            } else {
-                title = "The Brave Explorer";
-                desc = "Kamu sedang berproses! Teruslah bereksperimen sampai menemukan irisan ternyamanmu.";
-            }
+            if (avg > 85) { title = "The Ikigai Master"; desc = "Hidupmu sangat bermakna, berdampak, dan sejahtera!"; }
+            else if (p[0] > 70 && p[3] > 70 && p[2] < 50) { title = "The Starving Artist"; desc = "Cinta dan ahli, tapi kantong kering. Waktunya monetisasi!"; }
+            else if (p[2] > 75 && p[3] > 75 && p[0] < 50) { title = "The Wealthy Machine"; desc = "Duit lancar tapi hampa. Cari hobi yang bikin bahagia!"; }
+            else { title = "The Brave Explorer"; desc = "Kamu sedang berproses menemukan irisan hidupmu!"; }
 
             document.getElementById('result-title').innerText = title;
             document.getElementById('result-desc').innerText = desc;
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll ke atas untuk liat diagram
         }
 
         function shareResult() {
-            const title = document.getElementById('result-title').innerText;
-            const text = `Cek Ikigai-mu di ikigai.kangruli.web.id! Hasilku: ${title}. Seru banget, cobain deh! ✨`;
+            const text = `Cek Ikigai-mu di ikigai.kangruli.web.id! Hasilku: ${document.getElementById('result-title').innerText} ✨`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
